@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>3D Model Selector</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  </head>
+  <body>
+    <h1>3D Model Selector</h1>
+
+    <!-- The viewer -->
+    <model-viewer id="mv" src="models/1-1.glb" alt="3D Model"
+      style="width: 600px; height: 400px;"
+      camera-controls auto-rotate></model-viewer>
+    
+    <br>
+
+    <!-- Two sliders -->
+    Param A:
+    <input type="range" id="paramA" min="1" max="3" value="1">
+    Param B:
+    <input type="range" id="paramB" min="1" max="3" value="1">
+
+    <script>
+      const mv = document.getElementById('mv');
+      function update() {
+        const a = document.getElementById('paramA').value;
+        const b = document.getElementById('paramB').value;
+        mv.src = `models/${a}-${b}.glb`; // loads models/1-1.glb, models/1-2.glb, etc.
+      }
+      document.getElementById('paramA').oninput = update;
+      document.getElementById('paramB').oninput = update;
+    </script>
+  </body>
+</html>
